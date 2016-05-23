@@ -19,5 +19,5 @@ variable "asg_max" {}
 variable "asg_min" {}
 variable "health_check_grace_period" {}
 
-variable "route53_zoneid" {}
-variable "dns_alias" {}
+#variable "route53_zoneid" {}
+#variable "dns_alias" {}

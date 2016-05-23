@@ -1,36 +1,31 @@
 env:
   global:
-  - PACKER_VERSION=0.8.6
-  - TERRAFORM_VERSION=0.6.11
+  - PACKER_VERSION=0.10.1
+  - TERRAFORM_VERSION=0.6.16
   - TOOLS_DIR=$HOME/tools
   - PACKER_TEMPLATE=packer_apache_php.json
   - PACKER_VARS=vars/travis.json
-  - STATE_BUCKET=tfstates
+  - STATE_BUCKET=ype-demo-tfstate
   - STATE_KEY=demo/frontends
   - AWS_DEFAULT_REGION=eu-west-1
-  - secure: a6Cll+xqEJ8occt5j76FhNgpgHzP6rp3GC4SQTq2UQd0aIEl/Xd7N0ChmGHwiUr3ehKchVdecI9Fy0KcEe9f8p96KlxiOkgLafS4CdAgY2+lNvu6VZdNLzWstGfBTXOZDJ2MedwTz2omVrKvEZNE5r4bz7ZelKtece8Jbg3gVNA=
-  - secure: F64+IuxUPz+dQCn4j/i84RxIuGCOS4C0XTQdxmzEHsEhB/3MyZ2jpI1ZDJBCJHQPcMEiOK5sSSxGD4M3Mab/HdVUELJV32qOsDw7ZYtr3zUevLOAtzh78M5M0vxatmlfZy6xy4v/p0iehaS3Zo82cQY1Ndepx+tutFnLGbHG+QA=
-
+  - secure: "sRIEM2x/jO17ImyZmg1SGCt0zy8fyP2dLjv75SIwcih1ybQX6f/EGmqA3SQbYkg5wmEaK+SFIaBB/7sSz/f/TZv4NA6BUXyhtDmzAaS91IpSshkHat8u0CG1K4jMefYwMEnq0XFFT+rFUUqhFWvo9Anhp8FMyJ/SrkCiZV/lKqbtbI3BYq0oa0aIB+NugdhBDRXawYjutDs+/3YxOMZGToOL3WSzzNquyi1+a6I5TBH+/CTffVNkUZMTIxkqRCmNJ1SlVjL16KOoZgsA/IdE45A0ixSXfKyU0HEz1f8xl4SxwEDOplRipgAaSG4QA1TMePIkKezfkvpqxyx/BGEDquFXWqKbEwF3DOVMrzCpP6dYMKNKMtiKwJP8Rr9hgrxfjrkbcP2WeIL5rBQtFnd1Yw1uE2W/NEQkAnDja+cxix0TUvMgLGyBOjf3I1bsdFS469qjwON02g8wy5wcK6s40fjswmhcVVRQvZRSINq/EJh/tcbB18kE9fObdFtIu+LI1UA8MmDeNhndrCLXNvvzkfSF47cNdMV1gX980ZwUqfaI4+UefvXKhdtk3uHAPTYfDB4A7Lwa5CbLzA2N8cwSugHLJ+UgnfhFt8W72wYAtd1vPqbhDn70gjPFRKRB3uNmkZ9E+LUpMZCDyhPAPwDGPKLz+bSWXeDxeTe+mtBFD08="
+  - secure: "GftWlCwv9EUDtwAuf7i/05Wihe+up8o33g5YFeDhFRGn+6LFeYkKwQpaRwypvf+Y1WH304W8ASe2vGw0lYpYxLYRp0pbXkM/9/EdxQEGBhtIuYnZZq9FtmP+Kd5KQ2lVYnzsYWCrVY4l8tyQSlUoM6mNmuVl14xLDOEhUDh7+s10sA/lRzCPKFs/HAyl5uXGH54Hxk8aGLhiLKfbTewhZZZ7fnopDRPJDK2lGVlmkU/OJ1r8eF9u1EbQp22qxjBkG+/xLcBvTNVzn7rW2Ell1gfv1lOSummx4qZVskEZxxMC61Uel8WBjmjuP1il+t9Xhjr9wOg6kgD6PZjcLbf5AUUg4ImQaRTleEP1RdHYdYoD8ux04eNRjzgbtnWNVIibXt91bl6b4PqjLc323NnQIiE7rUgdIcf1+lHPbWM2CNWh/0xtdgE7yYuJyRL6sKugqaFnDWYnWl+PHM3gvwrejCVHh2CMLxix+2/Vr9W4ZQEJV7yWlkQC5dBl4ZtuN9a4KlWkavDmu1vcGvxZ3KwyHrPJliSEy89qImOCzm28jCjZeIwEoucqzE37ue2TLpUs+xkhrSLdaXGZtexvmLZzWXgUV2mwpSMTJI78PY/CdwqgoTDYyLEaq8x5vd20sT51LMY1gZZM/oYYUUYmnmkFEbU1vs9wyk55MR31f4yZ07w="
 language: php
-
 php:
-  - '5.6'
-
+- '5.6'
 before_install:
-  - composer self-update
-
+- composer self-update
 script:
-  - php -l site/index.php
-
+- php -l site/index.php
 before_deploy:
-  - export PATH=$PATH:$TOOLS_DIR/bin
-  - scripts/install_packer.sh
-  - scripts/install_terraform.sh
-  - pip install --user awscli
-
+- export PATH=$PATH:$TOOLS_DIR/bin
+- scripts/install_packer.sh
+- scripts/install_terraform.sh
+- pip install --user awscli
 deploy:
   provider: script
   script:
-    - scripts/pack_and_deploy.sh $TRAVIS_BUILD_DIR $PACKER_VARS $PACKER_TEMPLATE $TRAVIS_COMMIT $STATE_BUCKET $STATE_KEY
+  - scripts/pack_and_deploy.sh $TRAVIS_BUILD_DIR $PACKER_VARS $PACKER_TEMPLATE $TRAVIS_COMMIT
+    $STATE_BUCKET $STATE_KEY
   on:
     branch: master
