@@ -4,8 +4,8 @@
         "source_ami"    : null,
         "build_subnet"  : null,
         "build_vpc"     : null,
-        "ssh_private"   : "true",
-        "public_ip"     : "false",
+        "ssh_private"   : "false",
+        "public_ip"     : "true",
         "commit"        : "unknown",
         "project"       : "demo",
         "site_dir"    : null
@@ -21,7 +21,7 @@
         "ssh_private_ip": "{{user `ssh_private`}}",
         "ssh_username": "admin",
         "ssh_timeout": "300s",
-        "ami_name": "{{user `project`}}-{{user `commit`}}",
+        "ami_name": "{{user `project`}}-{{user `commit` }}-{{isotime \"2006-01-02T15-04-05\"}}",
         "ami_description": "{{user `project`}}, commit: {{user `commit`}}",
         "tags": {
           "Name": "{{user `project`}}",

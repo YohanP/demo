@@ -2,8 +2,8 @@
     "source_ami": "ami-e31a6594",
     "region": "eu-west-1",
     "build_vpc": "vpc-3167be54",
-    "build_subnet": "subnet-ac64f3c9",
-    "ssh_private"   : "true",
-    "public_ip"     : "false",
+    "build_subnet": "subnet-af64f3ca",
+    "ssh_private"   : "false",
+    "public_ip"     : "true",
     "project" : "demotv"
 }
