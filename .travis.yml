@@ -1,7 +1,8 @@
 env:
   global:
   - PACKER_VERSION=0.10.1
-  - TERRAFORM_VERSION=0.6.16
+  - TERRAFORM_VERSION=0.7.7
+>>>>>>> ac85a6805accd1f11b35610a74838c31dd7538ec
   - TOOLS_DIR=$HOME/tools
   - PACKER_TEMPLATE=packer_apache_php.json
   - PACKER_VARS=vars/travis.json
@@ -15,13 +16,14 @@ php:
 - '5.6'
 before_install:
 - composer self-update
-script:
 - php -l site/index.php
 before_deploy:
 - export PATH=$PATH:$TOOLS_DIR/bin
 - scripts/install_packer.sh
 - scripts/install_terraform.sh
 - pip install --user awscli
+- export COMMIT_SUBJECT="$(git log --format=%s --no-merges -n 1)"
+
 deploy:
   provider: script
   script:
@@ -29,3 +31,4 @@ deploy:
     $STATE_BUCKET $STATE_KEY
   on:
     branch: master
+    condition: "$COMMIT_SUBJECT != *\"[no deploy]\"*"
