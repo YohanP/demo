@@ -18,14 +18,16 @@ php:
 
 before_install:
 - composer self-update
-- php -l site/index.php
+
+script:
+- php -l site/index.ph
+- export COMMIT_SUBJECT="$(git log --format=%s --no-merges -n 1)"
 
 before_deploy:
 - export PATH=$PATH:$TOOLS_DIR/bin
 - scripts/install_packer.sh
 - scripts/install_terraform.sh
-- pip install --user awscli
-- export COMMIT_SUBJECT="$(git log --format=%s --no-merges -n 1)"
+#- pip install --user awscli
 
 deploy:
   provider: script
@@ -34,4 +36,4 @@ deploy:
     $STATE_BUCKET $STATE_KEY
   on:
     branch: master
-  ite/css/freelancer.css condition: "$COMMIT_SUBJECT != *\"[no deploy]\"*"
+    condition: "$COMMIT_SUBJECT != *\"[no deploy]\"*"
