@@ -20,7 +20,7 @@ before_install:
 - composer self-update
 
 script:
-- php -l site/index.ph
+- php -l site/index.php
 - export COMMIT_SUBJECT="$(git log --format=%s --no-merges -n 1)"
 
 before_deploy:
