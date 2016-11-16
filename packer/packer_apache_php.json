@@ -8,7 +8,7 @@
         "public_ip"     : "true",
         "commit"        : "unknown",
         "project"       : "demo",
-        "site_dir"    : null
+        "site_dir"      : null
     },
     "builders": [{
         "type": "amazon-ebs",

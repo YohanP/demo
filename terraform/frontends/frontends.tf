@@ -7,6 +7,7 @@ data "terraform_remote_state" "vpc" {
     config {
         bucket = "${var.state_bucket}"
         key = "${var.vpc_state_key}"
+        region = "${var.region}"
     }
 }
 
@@ -15,6 +16,7 @@ data "terraform_remote_state" "backends" {
     config {
         bucket = "${var.state_bucket}"
         key = "${var.backends_state_key}"
+        region = "${var.region}"
     }
 }
 
