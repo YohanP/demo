@@ -64,7 +64,8 @@ resource "aws_launch_configuration" "web" {
 }
 
 resource "aws_autoscaling_group" "web_asg" {
-    name = "asg-${aws_launch_configuration.web.name}"
+   # name = "asg-${aws_launch_configuration.web.name}"
+    name = "asg-test"
     launch_configuration = "${aws_launch_configuration.web.id}"
     availability_zones = ["${split(",",data.terraform_remote_state.vpc.azs)}"]
     vpc_zone_identifier = ["${split(",",data.terraform_remote_state.vpc.private_subnets)}"]
