@@ -1,8 +1,8 @@
 region          = "eu-west-1"
-vpc_name        = "demo-training"
+vpc_name        = "test-pib-if"
 base_network    = "10.0.0.0/16"
-public_networks = "10.0.0.0/24,10.0.1.0/24"
-private_networks= "10.0.2.0/24,10.0.3.0/24"
+public_networks = "10.0.0.0/24,10.0.1.0/24,10.0.2.0/24,10.0.3.0/24"
+private_networks= "10.0.4.0/24,10.0.5.0/24,10.0.6.0/24,10.0.7.0/24,10.0.8.0/24,10.0.9.0/24"
 trusted_networks= "109.28.19.33/32"
 
 bastion_ami     = "ami-e31a6594"

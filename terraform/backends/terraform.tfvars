@@ -1,5 +1,5 @@
-state_bucket	= "hsbc-demo-tfstates"
-vpc_state_key	= "demo/vpc"
+state_bucket	= "ype-demo-veolia"
+vpc_state_key	= "vpc/vpc.state"
 region          = "eu-west-1"
 
 backend_name	= "demo"
