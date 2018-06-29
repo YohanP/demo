@@ -3,7 +3,7 @@ terraform {
     bucket = "ype-demo-veolia"
     key    = "vpc/vpc.state"
     region = "eu-west-1"
-    lock_table = "demo-veolia"
+    dynamodb_table = "demo-veolia"
   }
 }
 
