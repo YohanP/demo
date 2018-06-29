@@ -2,7 +2,7 @@ dist: trusty
 env:
   global:
   - PACKER_VERSION=0.12.1
-  - TERRAFORM_VERSION=0.9.5
+  - TERRAFORM_VERSION=0.11.3
   - TOOLS_DIR=$HOME/tools
   - PACKER_TEMPLATE=packer_apache_php.json
   - PACKER_VARS=vars/travis.json
